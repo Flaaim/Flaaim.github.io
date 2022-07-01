@@ -1,0 +1,16 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"styles.scss",
+		"_sass/layout.scss",
+		"_sass/navigation.scss"
+	],
+	"sourcesContent": [
+		"@import \"layout\";\n@import \"navigation\";",
+		"body {\r\n    color: red;\r\n}",
+		"nav a {\r\n    color: red;\r\n}"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,IAAI,CAAC,EACD,KAAK,EAAE,GAAG,GACb;;ACFD,AAAA,GAAG,CAAC,CAAC,CAAC,EACF,KAAK,EAAE,GAAG,GACb"
+}

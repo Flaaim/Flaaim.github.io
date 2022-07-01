@@ -1,5 +1,7 @@
+
+
 <nav>
-    <a href="{{page.name}}">Статьи</a>
-    <a href="{{page.name}}">Проекты</a>
-    <a href="{{page.name}}">Обо мне</a>
+    {% for item in site.data.navigation %}
+    <a href="{{item.link}}">{{item.name}}</a>
+    {% endfor %}
 </nav>

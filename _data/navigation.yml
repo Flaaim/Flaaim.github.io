@@ -1,0 +1,6 @@
+- name: Статьи
+  link: /articles.html
+- name: Проекты
+  link: /projects.html
+- name: Обо мне
+  link: /about.html
