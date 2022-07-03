@@ -1,7 +1,16 @@
-
-
-<nav>
-    {% for item in site.data.navigation %}
-    <a href="{{item.link}}">{{item.name}}</a>
-    {% endfor %}
+<nav class="brand-section">
+    <a href="/">Alexandr Grigoriev</a>
 </nav>
+<div>
+    <nav class="navigation-links">
+        {% for item in site.data.navigation %}
+        <a href="{{item.link}}"><img src="{{item.img}}">{{item.name}}</a>
+        {% endfor %}
+    </nav>
+</div>
+
+<div class="toolbar">
+    <nav class="social-nav">
+        <a href="https://github.com/Flaaim"><img src="assets/images/github.png" alt="gitHub"></a>
+    </nav>
+</div>

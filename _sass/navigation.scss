@@ -1,3 +1,76 @@
-nav a {
-    color: red;
+.navigation {
+    font-family: 'Jura', sans-serif;
+    background-color: #f0f0f0;
+    height: 60px;
+    border-bottom: 1px solid #e0e0e0;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
 }
+
+.navigation-inner {
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation-links, .navigation-links a, .social-nav, .social-nav a, .brand-section, .brand-section a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+}
+
+.navigation-links a, .social-nav a, .brand-section a {
+    color: #372e19;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    font-weight: 500;
+    line-height: 1.1;
+    gap: 0.4rem;
+    text-decoration: none;
+}
+.brand-section a {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.navigation-links a:hover, .toolbar a:hover, .brand-section a:hover {
+    background: #ddd;
+}
+.navigation-inner img {
+    width: 24px;
+    height: 24px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .navigation-inner {
+        height: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .navigation-links, .navigation-links a, .social-nav, .social-nav a{
+        gap: 0.3rem;
+    }
+    .navigation-links a {
+        flex-direction: column;
+    }
+    .brand-section a {
+        flex-basis: 50%;
+    }
+    .navigation {
+        height: 80px;
+    }
+    .toolbar {
+        display: none;
+    }
+    }
+  @media screen and (max-width: 370px) {
+    .navigation {
+        height: 120px;
+    }
+    }
