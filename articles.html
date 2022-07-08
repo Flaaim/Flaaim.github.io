@@ -1,0 +1,15 @@
+---
+layout: main
+title: Статьи
+description: Список статей блога по датам
+---
+
+
+<h1>Статьи</h1><section class="segment">
+    <h2>Список всех доступных статей</h2>
+    <div class="posts">
+        {% for post in site.posts limit:5 %}
+        <a class="post" href="{{post.url}}"><h3>{{post.title}}</h3><time>{{post.date | date: "%d.%m.%Y"}}</time></a>
+        {% endfor %}
+    </div>
+</section>

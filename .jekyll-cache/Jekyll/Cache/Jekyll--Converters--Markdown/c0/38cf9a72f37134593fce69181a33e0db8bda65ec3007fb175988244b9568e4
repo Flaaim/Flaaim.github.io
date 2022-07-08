@@ -1,0 +1,37 @@
+I"�	<p>Рассмотрим способ добавления vagrant box’a laravel/homestead вручную. Данный способ может вам пригодиться если при выполнении команды vagrant box add laravel/homestead вы получаете ошибку как на изображении ниже
+<img src="/assets/images/articles/manual-add-vagrant-box/laravel-add-box-404.png" alt="laravel-homestead" /></p>
+
+<p>Для того чтобы добавить вручную laravel homestead необходимо выполнить следующее:</p>
+
+<ol>
+  <li>
+    <p>Переходим по ссылке <a href="https://app.vagrantup.com/laravel/boxes/homestead">https://app.vagrantup.com/laravel/boxes/homestead</a>.</p>
+  </li>
+  <li>
+    <p>Находим последний релиз. В моем случае это 12.1.0. Находим провайдер virtualbox. Нажимаем скачать.</p>
+  </li>
+  <li>
+    <p>Скачиваем box. После скачивания можно переименовать бокс как вам удобно (я свой переименовал в virtualbox), главное в конце не забыть добавить расширение <mark>.box</mark></p>
+  </li>
+</ol>
+
+<p>Теперь устанавливаем box вручную. Для этого вводим команду</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box add laravel/homestead [полный путь к скачанному файлу].
+</code></pre></div></div>
+<p>В моем случае код будет выглядеть следующим образом.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box add laravel/homestead  file:///c:/users/flaai/downloads/virtualbox.box
+</code></pre></div></div>
+<p>После успешного добавления бокса, остается его проапдейтить.</p>
+
+<p>Для этого идем в папку</p>
+
+<p><mark>c:/users/flaai/.vagrant.d/boxes/laravel-VAGRANTSLASH-homestead</mark></p>
+
+<p>В данной папке создаем файл <mark>metadata_url</mark></p>
+
+<p>В данном файле прописываем следующую ссылку</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://app.vagrantup.com/laravel/boxes/homestead 
+</code></pre></div></div>
+:ET

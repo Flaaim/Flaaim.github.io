@@ -1,0 +1,46 @@
+.footer {
+    font-family: 'Jura', sans-serif;
+    background: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+    padding: 3rem 0;
+}
+
+.footer section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.footer nav {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0 1rem;
+}
+.footer a, .footer span {
+    text-decoration: none;
+    align-items: center;
+    color: #777;
+    display: flex;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    padding: 0 0.5rem;
+}
+
+.footer a:hover {
+    color: #111;
+}
+.footer span {
+    color: #333;
+}
+.footer img {
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (max-width: 800px){
+    .footer a, .footer span {
+        padding: 0 0.25rem;
+    }
+}

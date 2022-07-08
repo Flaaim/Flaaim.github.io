@@ -6,4 +6,59 @@ keywords: разработка сайтов, web, php, laravel, homestead, vagra
 ---
 
 
+<section class="segment"> 
+    <div class="hero-wrapper">
+        <div class="hero-index">
+            <h1>Привет!</h1>
+            <p>
+                Данный вебсайт - это мой путь развития в качестве вебразработчика. Все что я изучаю, чем пользуюсь в работе и что мне интересно, остается здесь.
+            </p>
+        </div>
+        <div class="hero-decoration">
+            <img src="/assets/images/my_way.png" alt="мой путь в вебе">
+        </div>
+    </div>
 
+</section>
+<section class="segment">
+    <h2>Новые статьи</h2>
+    <div class="posts">
+        {% for post in site.posts limit:5 %}
+        <a class="post" href="{{post.url}}"><h3>{{post.title}}</h3><time>{{post.date | date: "%d.%m.%Y"}}</time></a>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="segment">
+    <h2>Проекты</h2>
+    <div class="projects">
+        {% for item in site.data.projects %}
+        <div class="card">
+            <time>{{item.year}}</time>
+            <a class="card-header" href="{{item.link}}">{{item.name}}</a>
+                <p>
+                    {{item.desc}}
+                </p>
+            <div class="project-links">
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Источник </a>
+                {% if item.demo %}
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Демо</a>
+                {% endif %}
+                {% if item.article %}
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Статья</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="segment"><h2>Будь вкурсе!</h2>
+    <p class="newsletter-text">
+        Чтобы быть вкурсе актуального материала, можно подписаться на блог. Я пишу редко и никогда не спамлю!
+    </p>
+    <div class="newsletter">
+        <a href="#">Подписаться</a>
+    </div>
+    
+</section>

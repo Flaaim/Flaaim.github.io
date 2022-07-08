@@ -10,21 +10,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
     <title>{{page.title}}</title>
 </head>
 <body>
-    <header class="navigation">
-        <div class="container">
-            <div class="row navigation-inner">
-                    {% include header.html %}
+    <div class="content">
+        <header class="navigation">
+            <div class="container">
+                <div class="row navigation-inner">
+                        {% include header.html %}
+                </div>
             </div>
-        </div>
-    </header>
-    {{content}}
+        </header>
+        <main>
+            <section class="container ">
+                <div class="row main-content">
+                    
+                        {{content}}
+                   
+                    
+                </div>
+                
+            </section>
+            
+        </main>
+    </div>
     <footer class="footer">
         <div class="container">
-            <div class="row footer-inner"></div>
-            {% include footer.html %}
+            <div class="row footer-inner">
+                {% include footer.html %}
+            </div>
         </div>
     </footer>
 </body>

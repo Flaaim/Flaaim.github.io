@@ -1,9 +1,9 @@
 - name: Статьи
   link: /articles.html
-  img: assets/images/blog.png
+  img: /assets/images/blog.png
 - name: Проекты
   link: /projects.html
-  img: assets/images/code.png
+  img: /assets/images/code.png
 - name: Обо мне
   link: /about.html
-  img: assets/images/programming.png
+  img: /assets/images/programming.png

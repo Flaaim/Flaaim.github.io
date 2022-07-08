@@ -1,0 +1,30 @@
+---
+layout: main
+title: Проекты
+description: Список моих проектов
+---
+
+<h1>Проекты</h1>
+<section class="segment">
+    <h2>Список всех доступных проектов</h2>
+    <div class="projects">
+        {% for item in site.data.projects %}
+        <div class="card">
+            <time>{{item.year}}</time>
+            <a class="card-header" href="{{item.link}}">{{item.name}}</a>
+                <p>
+                    {{item.desc}}
+                </p>
+            <div class="project-links">
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Источник </a>
+                {% if item.demo %}
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Демо</a>
+                {% endif %}
+                {% if item.article %}
+                <a href="{{item.link}}"><img src="/assets/images/project-link.png" alt="источник ссылки">Статья</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

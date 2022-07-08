@@ -1,0 +1,68 @@
+.post-header {
+    padding: 2rem 0 0.5rem;
+}
+.post-header h1 {
+    font-weight: 700;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 2.6rem;
+    line-height: 1.7;
+}
+.article {
+    margin: 1rem 0rem;
+}
+
+.article p {
+    line-height: 1.7;
+    margin-bottom: 1.3rem;
+}
+.article a {
+    font-weight: 600;
+    color:#333;
+}
+.article div.highlight{
+    padding: 1rem 0.5rem;
+    overflow: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+.article code {
+    display: inline-block;
+    margin: 0;
+    font: 14px/1.625em Menlo, Consolas,"Courier New", Courier, "Liberation Mono", monospace;
+    padding: 0 0.5em;
+}
+.article img {
+    width: 100%;
+}
+.article mark{
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 1.1rem;
+    background-color: #b7c0c933;
+    border-radius: 6px;
+    font-family: 'Jura', sans-serif;
+}
+.article blockquote {
+    background: #f1f2fd;
+    border-left: 4px solid #969bf6;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+    padding: 1rem;
+}
+.post-info {
+    color: #4b5056;
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 800px) {
+    .post-header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 390px){
+    .post-header h1 {
+        font-size: 1.5rem;
+    }
+}

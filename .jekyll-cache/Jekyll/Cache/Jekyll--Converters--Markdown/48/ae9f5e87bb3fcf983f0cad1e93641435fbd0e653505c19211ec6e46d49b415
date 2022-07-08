@@ -1,0 +1,17 @@
+I"�<p>Рассмотрим способ добавления vagrant box’a laravel/homestead вручную. Данный способ может вам пригодиться если при выполнении команды vagrant box add laravel/homestead вы получаете ошибку как на изображении ниже</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+author: jill
+---
+function test() {
+  console.log("notice the blank line before this function?");
+}
+</code></pre></div></div>
+<blockquote>
+  <p>далее пишем что то свое</p>
+</blockquote>
+
+<p><a href="link">link</a></p>
+
+:ET
