@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <title>Как вручную установить laravel/homestead vagrant box</title>
+</head>
+<body>
+    <div class="content">
+        <header class="navigation">
+            <div class="container">
+                <div class="row navigation-inner">
+                        <nav class="brand-section">
+    <a href="/">Alexandr Grigoriev</a>
+</nav>
+<div>
+    <nav class="navigation-links">
+        
+        <a href="/articles.html"><img src="/assets/images/blog.png">Статьи</a>
+        
+        <a href="/projects.html"><img src="/assets/images/code.png">Проекты</a>
+        
+        <a href="/about.html"><img src="/assets/images/programming.png">Обо мне</a>
+        
+    </nav>
+</div>
+
+<div class="toolbar">
+    <nav class="social-nav">
+        <a href="https://github.com/Flaaim"><img src="/assets/images/github_logo.png" alt="gitHub"></a>
+    </nav>
+</div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="container ">
+                <div class="row main-content">
+                    
+                        <div class="article-content">
+    <div class="post-header">
+        <h1>Как вручную установить laravel/homestead vagrant box</h1>
+    </div>
+    <div class="post-info">
+        Автор: Alexandr Grigoriev,
+        Опубликовано: 03.07.2022г.
+    </div>
+    <section class="article">
+        <p>Рассмотрим способ добавления vagrant box’a laravel/homestead вручную. Данный способ может вам пригодиться если при выполнении команды vagrant box add laravel/homestead вы получаете ошибку как на изображении ниже</p>
+
+<p><img src="/assets/images/articles/manual-add-vagrant-box/laravel-add-box-404.png" alt="laravel-homestead" /></p>
+
+<p>Для того чтобы добавить вручную laravel homestead необходимо выполнить следующее:</p>
+
+<ol>
+  <li>
+    <p>Переходим по ссылке <a href="https://app.vagrantup.com/laravel/boxes/homestead">https://app.vagrantup.com/laravel/boxes/homestead</a>.</p>
+  </li>
+  <li>
+    <p>Находим последний релиз. В моем случае это 12.1.0. Находим провайдер virtualbox. Нажимаем скачать.</p>
+  </li>
+  <li>
+    <p>Скачиваем box. После скачивания можно переименовать бокс как вам удобно (я свой переименовал в virtualbox), главное в конце не забыть добавить расширение <mark>.box</mark></p>
+  </li>
+</ol>
+
+<p>Теперь устанавливаем скачанный box. Для этого вводим команду</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box add laravel/homestead [полный путь к скачанному файлу].
+</code></pre></div></div>
+<p>В моем случае код будет выглядеть следующим образом.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant box add laravel/homestead  file:///c:/users/flaai/downloads/virtualbox.box
+</code></pre></div></div>
+<p>После успешного добавления бокса, остается его проапдейтить.</p>
+
+<p>Для этого идем в папку</p>
+
+<p><mark>c:/users/flaai/.vagrant.d/boxes/laravel-VAGRANTSLASH-homestead</mark></p>
+
+<p>В данной папке создаем файл <mark>metadata_url</mark></p>
+
+<p>В данном файле прописываем следующую ссылку</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://app.vagrantup.com/laravel/boxes/homestead 
+</code></pre></div></div>
+
+<p>Далее переименовываем папку с названием 0 на 12.1.0, где 12.1.0 это версия laravel/homestead бокса</p>
+
+    </section>
+    <script src="https://utteranc.es/client.js"
+        repo="Flaaim/flaaim.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    
+</div>
+
+                   
+                    
+                </div>
+                
+            </section>
+            
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row footer-inner">
+                <section>
+    <nav>   
+            
+            <a href="/subscribe.html">Подписаться</a>
+            <a href="/rss.html">RSS</a>
+    </nav>
+    <nav >
+            <a href="https://jekyllrb.com/" target="_blank" rel="nofollow">
+               <span> Jekyll</span>
+               <img src="/assets/images/jekyll.png" alt="jekyll">
+            </a>
+            <a href="https://github.com/" target="_blank" rel="nofollow">
+                <span>GitHub</span>
+                <img src="/assets/images/github.png" alt="github">
+            </a>
+            <a href="https://www.netlify.com/" target="_blank" rel="nofollow">
+                <span>Netlify</span>
+                <img src="/assets/images/netlify.png" alt="netlify">
+            </a>
+    </nav>
+    
+</section>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
