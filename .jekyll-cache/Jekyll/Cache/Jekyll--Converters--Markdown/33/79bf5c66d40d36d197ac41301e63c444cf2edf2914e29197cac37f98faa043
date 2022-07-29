@@ -1,8 +1,0 @@
-I"y<p>Рассмотрим способ добавления vagrant box’a laravel/homestead вручную. Данный способ может вам пригодиться если при выполнении команды vagrant box add laravel/homestead вы получаете ошибку как на изображении ниже
-<img src="/assets/images/articles/manual-add-vagrant-box/laravel-add-box-404.png" alt="laravel-homestead" /></p>
-
-<p>Для того чтобы добавить вручную laravel homestead необходимо выполнить следующее:</p>
-
-<p><a href="link">link</a></p>
-
-:ET

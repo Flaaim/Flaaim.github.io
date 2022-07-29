@@ -1,15 +1,0 @@
-I"<p>Рассмотрим способ добавления vagrant box’a laravel/homestead вручную. Данный способ может вам пригодиться если при выполнении команды vagrant box add laravel/homestead вы получаете ошибку как на изображении ниже
-<img src="/assets/images/articles/manual-add-vagrant-box/laravel-add-box-404.png" alt="laravel-homestead" /></p>
-
-<p>Для того чтобы добавить вручную laravel homestead необходимо выполнить следующее:</p>
-
-<ol>
-  <li>
-    <p>Скачиваем laravel/homestead vagrant box вручную на компьютер.  <a href="https://app.vagrantup.com/laravel/boxes/homestead">https://app.vagrantup.com/laravel/boxes/homestead</a>.</p>
-  </li>
-  <li>
-    <p>Находим последний релиз. В моем случае это 12.1.0. Находим провайдер virtualbox. Нажимаем скачать.</p>
-  </li>
-</ol>
-
-:ET
