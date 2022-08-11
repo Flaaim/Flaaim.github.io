@@ -217,7 +217,9 @@ a.post time, .card time { color: #868e96; font-size: .8rem; font-weight: 500; }
 
 .article a { font-weight: 600; color: #333; }
 
-.article div.highlight { padding: 1rem 0.5rem; overflow: auto; border: 1px solid #e0e0e0; border-radius: 5px; }
+.article div.highlight { padding: 1rem 0.5rem; overflow: auto; border: 1px solid #e0e0e0; }
+
+.article div.filename { background-color: #e0e0e0; border-top-left-radius: 6px; border-top-right-radius: 6px; display: flex; justify-content: center; padding: 0.2rem 0; color: #4b5056; font-size: 0.8rem; }
 
 .article code { display: inline-block; margin: 0; font: 14px/1.625em Menlo, Consolas,"Courier New", Courier, "Liberation Mono", monospace; padding: 0 0.5em; }
 

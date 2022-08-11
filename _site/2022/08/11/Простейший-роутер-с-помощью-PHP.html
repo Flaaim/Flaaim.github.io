@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <title>Простейший роутер с помощью PHP</title>
+</head>
+<body>
+    <div class="content">
+        <header class="navigation">
+            <div class="container">
+                <div class="row navigation-inner">
+                        <nav class="brand-section">
+    <a href="/">Alexandr Grigoriev</a>
+</nav>
+<div>
+    <nav class="navigation-links">
+        
+        <a href="/articles.html"><img src="/assets/images/blog.png">Статьи</a>
+        
+        <a href="/projects.html"><img src="/assets/images/code.png">Проекты</a>
+        
+        <a href="/about.html"><img src="/assets/images/programming.png">Обо мне</a>
+        
+    </nav>
+</div>
+
+<div class="toolbar">
+    <nav class="social-nav">
+        <a href="https://github.com/Flaaim"><img src="/assets/images/github_logo.png" alt="gitHub"></a>
+    </nav>
+</div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="container ">
+                <div class="row main-content">
+                    
+                        <div class="article-content">
+    <div class="post-header">
+        <h1>Простейший роутер с помощью PHP</h1>
+    </div>
+    <div class="post-info">
+        Автор: Alexandr Grigoriev,
+        Опубликовано: 11.08.2022г.
+    </div>
+    <section class="article">
+        <p>В сегодняшней заметке блога, я бы хотел поделиться с вами простейшим роутером на PHP, который понимает регулярные выражения и при этом состоит всего из 3 файлов.</p>
+
+<p>Первым делом создаем файл <mark>.htaccess</mark> в котором прописываем так, чтобы все поступающие запросы перенаправлялись на <mark>index.php</mark>.</p>
+
+<div class="filename">.htaccess</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php [QSA]
+</code></pre></div></div>
+
+<p>Создаем файлы <mark>index.php</mark> и <mark>router.php</mark>. В файле index.php будут содержаться все доступные маршруты, а router будет обрабатывать эти самые маршруты.</p>
+
+<p>С помощью <mark>require_once</mark> подключаем router.php в index.php</p>
+
+<div class="filename">index.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+
+require_once "router.php";
+
+</code></pre></div></div>
+
+<p>В файле router.php определяем class <mark>Router</mark></p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+
+class Router { 
+
+}
+</code></pre></div></div>
+
+<p>в классе Router определяем статическую переменную <mark>$routes</mark>, которая будет хранить массив маршрутов определенных в файле index.php</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static $routes = [];
+</code></pre></div></div>
+
+<p>Определяем статический метод <mark>add( )</mark>. Данный метод будет записывать в массив $routes маршруты.  Первым параметром метод принимает маршрут (путь), вторым анонимную функцию, которая будет выводить информацию на экран, третьим передаваемый метод (GET или POST).</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static function add($routes, $function, $method = 'get')
+    {
+        array_push(self::$routes, [
+            'expression' =&gt; $routes,
+            'function'=&gt; $function,
+            'method' =&gt; $method
+        ]);
+    }
+</code></pre></div></div>
+
+<p>Таким образом маршруты будут храниться в переменной <mark>$routes</mark> в таком виде:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Router::add('/test', function(){
+    echo "Hello world!";
+}, 'get');
+</code></pre></div></div>
+<p>Результат:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array
+(
+    [0] =&gt; Array
+        (
+            [expression] =&gt; /test
+            [function] =&gt; Closure Object
+                (
+                )
+
+            [method] =&gt; get
+        )
+
+)
+</code></pre></div></div>
+
+<p>Далее определяем два вспомогательных метода:</p>
+
+<p><mark>methodNotAllowed( )</mark> будет вызываться при обращении к не определенному методу (GET или POST)</p>
+
+<p><mark>pathNotFound( )</mark> будет вызываться при обращении к несуществующему маршруту. Другими словами 404 page error.</p>
+
+<p>Оба метода являются статичными.</p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected static function methodNotAllowed($method){
+        echo "Метод ".strtoupper($method)." не доступен";
+    }
+protected static function pathNotFound(){
+        echo "Страница не найдена";
+    }
+</code></pre></div></div>
+
+<p>Далее определяем метод <mark>run( )</mark>, который будет обрабатывать маршруты и выводить нужную нам информацию.</p>
+
+<p>Логика метода следующая:</p>
+
+<p>Функцией  <mark>parse_url( )</mark> разбираем переданный URL на части и записываем полученный массив в $parsed_url. Проверяем наличие данных в $parsed_url, записываем значение <mark>$parsed_url['path']</mark> в переменную $path.</p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        if($parsed_url){
+            $path = $parsed_url['path'];
+        }else {
+            $path = '/';
+        }
+</code></pre></div></div>
+
+<p>Получаем в переменную $method переданный метод (GET или POST).</p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$method = $_SERVER['REQUEST_METHOD'];
+</code></pre></div></div>
+
+<p>Определяем две вспомогательные переменные <mark>$path_match_found</mark>, <mark>$route_match_found</mark> Они необходимы будут в дальнейшем для проверки существования метода или пути. Устанавливаем им значение <mark>false</mark>.</p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$path_match_found = false;
+$route_match_found = false;
+</code></pre></div></div>
+<p>Циклом foreach обходим маршруты находящиеся в $routes. В цикле необходимо функцией <mark>preg_match</mark> проверить совпадение маршрута в массиве с передаваемой в переменную $path URL.
+Если условие выполняется устанавливаем значение <mark>$path_match_found = true;</mark></p>
+
+<p>Далее проверяем совпадение методов, если условие выполняется то удаляем первый элемент из массива $matches. Устанавливаем значение <mark>$route_match_found = true;</mark></p>
+
+<p>Далее вызываем функцию обратного вызова с массивом параметров <mark>call_user_func_array($route['function'], $matches)</mark> и завершаем выполнение сценария с помощью <mark>break</mark>;</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(preg_match('#^'.$route['expression'].'$#', $path, $matches)){
+$path_match_found = true;
+      if(strtolower($method) == strtolower($route['method'])){
+                    array_shift($matches);
+                    $route_match_found = true;
+                    call_user_func_array($route['function'], $matches);
+                    break;
+                }
+ 
+ 
+</code></pre></div></div>
+<p>Следующее, что остается сделать это что делать при несовпадении передаваемой URL с маршрутом в массиве.</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(!$route_match_found){
+            if($path_match_found){
+                header("HTTP/1.0 405 Method Not Allowed");
+                self::methodNotAllowed($route['method']);
+            }else{
+                header("HTTP/1.0 404 Not Found");
+                self::pathNotFound();
+            }
+        }
+</code></pre></div></div>
+<p>Тут в принципе должно быть все ясно. Если $route_match_found возвращает false, проверяем что возвращает $path_match_found, если true, то тогда методы не совпадают, иначе не совпадают пути.</p>
+
+<p>Полный код класса Router будет следующим:</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+
+class Router {
+    public static $routes = [];
+
+    public static function add($routes, $function, $method = 'get')
+    {
+        array_push(self::$routes, [
+            'expression' =&gt; $routes, 
+            'function'=&gt; $function, 
+            'method' =&gt; $method
+        ]);
+    }
+    protected static function methodNotAllowed($method){
+        echo "Метод ".strtoupper($method)." не доступен";
+    }
+    protected static function pathNotFound(){
+        echo "Страница не найдена";
+    }
+    public static function run(){
+        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        if($parsed_url){
+            $path = $parsed_url['path'];
+        }else {
+            $path = '/';
+        }
+        $method = $_SERVER['REQUEST_METHOD'];
+        $path_match_found = false;
+        $route_match_found = false;
+        
+        foreach(self::$routes as $route){
+            if(preg_match('#^'.$route['expression'].'$#', $path, $matches)){
+               
+                $path_match_found = true;
+                if(strtolower($method) == strtolower($route['method'])){
+                    
+                    array_shift($matches);
+                    $route_match_found = true;
+                    call_user_func_array($route['function'], $matches);
+                    break;
+                }
+            }
+        }
+        if(!$route_match_found){
+            if($path_match_found){
+                header("HTTP/1.0 405 Method Not Allowed");
+                self::methodNotAllowed($route['method']);
+            }else{
+                header("HTTP/1.0 404 Not Found");
+                self::pathNotFound();
+            }
+        }
+    }
+}
+</code></pre></div></div>
+
+<p>Теперь осталось в файле index.php прописать маршруты и запустить роутер.</p>
+<div class="filename">index.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require_once "router.php";
+Router::add('/test', function(){
+    echo "Hello world!";
+}, 'get');
+
+Router::add('/test/([a-z]+)', function($var){
+     echo "This is a ".$var;
+}, 'get');
+ 
+Router::run();
+</code></pre></div></div>
+
+<p><a href="https://github.com/Flaaim/php-router">Ссылка на github</a></p>
+
+    </section>
+    <script src="https://utteranc.es/client.js"
+        repo="Flaaim/flaaim.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    
+</div>
+
+                   
+                    
+                </div>
+                
+            </section>
+            
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row footer-inner">
+                <section>
+    <nav>   
+            
+            <a href="/subscribe.html">Подписаться</a>
+            <a href="/rss.html">RSS</a>
+    </nav>
+    <nav >
+            <a href="https://jekyllrb.com/" target="_blank" rel="nofollow">
+               <span> Jekyll</span>
+               <img src="/assets/images/jekyll.png" alt="jekyll">
+            </a>
+            <a href="https://github.com/" target="_blank" rel="nofollow">
+                <span>GitHub</span>
+                <img src="/assets/images/github.png" alt="github">
+            </a>
+            <a href="https://www.netlify.com/" target="_blank" rel="nofollow">
+                <span>Netlify</span>
+                <img src="/assets/images/netlify.png" alt="netlify">
+            </a>
+    </nav>
+    
+</section>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

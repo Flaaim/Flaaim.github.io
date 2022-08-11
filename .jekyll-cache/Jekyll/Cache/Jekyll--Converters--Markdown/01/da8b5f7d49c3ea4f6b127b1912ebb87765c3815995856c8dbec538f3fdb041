@@ -1,0 +1,109 @@
+I"<p>В сегодняшней заметке блога, я бы хотел поделиться с вами простейшим роутером на PHP, который понимает регулярные выражения и при этом состоит всего из 3 файлов.</p>
+
+<p>Первым делом создаем файл <mark>.htaccess</mark> в котором прописываем так, чтобы все поступающие запросы перенаправлялись на <mark>index.php</mark>.</p>
+
+<div class="filename">.htaccess</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php [QSA]
+</code></pre></div></div>
+
+<p>Создаем файлы <mark>index.php</mark> и <mark>router.php</mark>. В файле index.php будут содержаться все доступные маршруты, а router будет обрабатывать эти самые маршруты.</p>
+
+<p>С помощью <mark>require_once</mark> подключаем router.php в index.php</p>
+
+<div class="filename">index.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+
+require_once "router.php";
+
+</code></pre></div></div>
+
+<p>В файле router.php определяем class <mark>Router</mark></p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+
+class Router { 
+
+}
+</code></pre></div></div>
+
+<p>в классе Router определяем статическую переменную <mark>$routes</mark>, которая будет хранить массив маршрутов определенных в файле index.php</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static $routes = [];
+</code></pre></div></div>
+
+<p>Определяем статический метод <mark>add( )</mark>. Данный метод будет записывать в массив $routes маршруты.  Первым параметром метод принимает маршрут (путь), вторым анонимную функцию, которая будет выводить информацию на экран, третьим передаваемый метод (GET или POST).</p>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static function add($routes, $function, $method = 'get')
+    {
+        array_push(self::$routes, [
+            'expression' =&gt; $routes,
+            'function'=&gt; $function,
+            'method' =&gt; $method
+        ]);
+    }
+</code></pre></div></div>
+
+<p>Таким образом маршруты будут храниться в переменной <mark>$routes</mark> в таком виде:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Router::add('/test', function(){
+    echo "Hello world!";
+}, 'get');
+</code></pre></div></div>
+<p>Результат:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array
+(
+    [0] =&gt; Array
+        (
+            [expression] =&gt; /test
+            [function] =&gt; Closure Object
+                (
+                )
+
+            [method] =&gt; get
+        )
+
+)
+</code></pre></div></div>
+
+<p>Далее определяем два вспомогательных метода:</p>
+
+<p><mark>methodNotAllowed( )</mark> будет вызываться при обращении к не определенному методу (GET или POST)</p>
+
+<p><mark>pathNotFound( )</mark> будет вызываться при обращении к несуществующему маршруту. Другими словами 404 page error.</p>
+
+<p>Оба метода являются статичными.</p>
+
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected static function methodNotAllowed($method){
+        echo "Метод ".strtoupper($method)." не доступен";
+    }
+protected static function pathNotFound(){
+        echo "Страница не найдена";
+    }
+</code></pre></div></div>
+
+<p>Далее определяем метод <mark>run( )</mark>, который будет обрабатывать маршруты и выводить нужную нам информацию.</p>
+
+<p>Логика метода следующая:</p>
+<ol>
+  <li>функцией  <mark>parse_url( )</mark> разбираем переданный URL на части и записываем полученный массив в $parsed_url. Проверяем наличие данных в $parsed_url, записываем значение <mark>$parsed_url['path']</mark> в переменную $path.</li>
+</ol>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        if($parsed_url){
+            $path = $parsed_url['path'];
+        }else {
+            $path = '/';
+        }
+</code></pre></div></div>
+<ol>
+  <li>Получаем в переменную $method переданный метод (GET или POST).</li>
+</ol>
+<div class="filename">router.php</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$method = $_SERVER['REQUEST_METHOD'];
+</code></pre></div></div>
+:ET
