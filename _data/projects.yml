@@ -5,12 +5,16 @@
   demo: 
   article: 
 - name: help-ot.ru
-  desc: Блог охраны труда. Написан на php, в процедурном стиле
+  desc: Блог охраны труда. Стек (PHP, MYSQL) процедурный стиль
   year: 2019
   link: https://help-ot.ru
 - name: safeworkblog.com
   desc: Workplace safety blog
   year: 2022
   link: https://safeworkblog.com
+- name: med-checkup.ru
+  desc: Приложение для выдачи направлений на МО. (PHP, MYSQL, AJAX, Jquery)
+  year: 2022
+  link: https://med-checkup.ru
 
 
