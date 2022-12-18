@@ -1,10 +1,0 @@
-I"<p>В сегодняшней заметке блога, я бы хотел поделиться с вами простейшим роутером на PHP, который понимает регулярные выражения и при этом состоит всего из 3 файлов.</p>
-
-<p>Первым делом создаем файл <mark>.htaccess</mark> в котором прописываем так, чтобы все поступающие запросы перенаправлялись на <mark>index.php</mark>.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule ^(.*)$ index.php [QSA]
-</code></pre></div></div>
-:ET
