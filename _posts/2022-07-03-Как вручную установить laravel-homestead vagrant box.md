@@ -10,6 +10,8 @@ author: Alexandr Grigoriev
 
 ![laravel-homestead](/assets/images/articles/manual-add-vagrant-box/laravel-add-box-404.png)
 
+## Установка vagrant box homestead
+
 Для того чтобы добавить вручную laravel homestead необходимо выполнить следующее:
 
 1. Переходим по ссылке [https://app.vagrantup.com/laravel/boxes/homestead](https://app.vagrantup.com/laravel/boxes/homestead).
@@ -43,3 +45,8 @@ https://app.vagrantup.com/laravel/boxes/homestead
 ```
 
 Далее переименовываем папку с названием 0 на 12.1.0, где 12.1.0 это версия laravel/homestead бокса
+
+Далее выполняем команду `vagrant up`. 
+
+## Дополнительные настройки 
+
