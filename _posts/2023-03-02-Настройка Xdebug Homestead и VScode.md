@@ -2,6 +2,7 @@
 title: Настройка Xdebug, Homestead и VS code
 layout: post
 author: Alexandr Grigoriev
+description: Настраеваем Xdebug в системе Homestead и выводим отработку в Visial Studio code.
 ---
 
 В сегодняшней заметке рассмотрим как сконфигурировать Xdebug на виртуальной машине и настроить его на VScode.
