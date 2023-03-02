@@ -27,6 +27,10 @@ body {
   flex-shrink: 0;
 }
 
+.language-plaintext {
+  padding: 0 0 1.5rem;
+}
+
 .navigation {
   font-family: "Jura", sans-serif;
   background-color: #f0f0f0;
