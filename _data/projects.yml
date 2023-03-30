@@ -9,12 +9,15 @@
   year: 2019
   link: https://help-ot.ru
 - name: safeworkblog.com
-  desc: Workplace safety blog
+  desc: Workplace safety blog. Также написан на jekyll 
   year: 2022
   link: https://safeworkblog.com
 - name: med-checkup.ru
   desc: Приложение для выдачи направлений на МО. (PHP, MYSQL, AJAX, Jquery)
   year: 2022
   link: https://med-checkup.ru
-
+- name: prsng_news
+  desc: парсинг новостей по охране труда с разных сайтов и отправка их в телеграм канал с помощью бота. (стек PHP, MYSQL)
+  year: 2023
+  link: https://github.com/Flaaim/prsng_news
 
